@@ -20,19 +20,19 @@ public typealias ParsingPipelineCallback = (_ json: Data) -> (Any)
         let json = block(data)
         let jsonOther = try! JSONSerialization.jsonObject(with: dataOther)
 
-        if let json = json as? Parameters, let jsonOther = jsonOther as? Parameters {
+        if let json = json as? Japx.Parameters, let jsonOther = jsonOther as? Japx.Parameters {
             return does(jsonParameter: json, containsEverythingFrom: jsonOther)
         }
 
-        if let json = json as? Parameters, let jsonOther = jsonOther as? [Parameters] {
+        if let json = json as? Japx.Parameters, let jsonOther = jsonOther as? [Japx.Parameters] {
             return does(jsonParameter: json, containsEverythingFrom: ["data": jsonOther])
         }
 
-        if let json = json as? [Parameters], let jsonOther = jsonOther as? Parameters {
+        if let json = json as? [Japx.Parameters], let jsonOther = jsonOther as? Japx.Parameters {
             return does(jsonParameter: ["data": json], containsEverythingFrom: jsonOther)
         }
 
-        if let json = json as? [Parameters], let jsonOther = jsonOther as? [Parameters] {
+        if let json = json as? [Japx.Parameters], let jsonOther = jsonOther as? [Japx.Parameters] {
             return does(jsonParameters: json, containsEverythingFrom: jsonOther)
         }
 
@@ -44,25 +44,25 @@ public typealias ParsingPipelineCallback = (_ json: Data) -> (Any)
         return try! Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
     }
 
-    @objc public static func does(jsonParameters: [Parameters], containsEverythingFrom otherJson: [Parameters]) -> Bool {
+    @objc public static func does(jsonParameters: [Japx.Parameters], containsEverythingFrom otherJson: [Japx.Parameters]) -> Bool {
         guard otherJson.count == jsonParameters.count else { return false }
         return zip(jsonParameters, otherJson).reduce(true) { (value, jsons) -> Bool in
             return value && does(jsonParameter: jsons.0, containsEverythingFrom: jsons.1)
         }
     }
 
-    @objc public static func does(jsonParameter: Parameters, containsEverythingFrom otherJson: Parameters) -> Bool {
+    @objc public static func does(jsonParameter: Japx.Parameters, containsEverythingFrom otherJson: Japx.Parameters) -> Bool {
         return otherJson.reduce(true) { (boolCollectedSoFar, entry) -> Bool in
 
             if !boolCollectedSoFar { return false }
 
-            if let arrayOther = entry.value as? [Parameters] {
-                guard let array = jsonParameter[entry.key] as? [Parameters] else { return false }
+            if let arrayOther = entry.value as? [Japx.Parameters] {
+                guard let array = jsonParameter[entry.key] as? [Japx.Parameters] else { return false }
                 return does(jsonParameters: array, containsEverythingFrom: arrayOther)
             }
 
-            if let innerJsonOther = entry.value as? Parameters {
-                guard let innerJson = jsonParameter[entry.key] as? Parameters else { return false }
+            if let innerJsonOther = entry.value as? Japx.Parameters {
+                guard let innerJson = jsonParameter[entry.key] as? Japx.Parameters else { return false }
                 return does(jsonParameter: innerJson, containsEverythingFrom: innerJsonOther)
             }
 

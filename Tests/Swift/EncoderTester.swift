@@ -32,7 +32,7 @@ class EncoderTests: XCTestCase {
     }
 
     func testJSONAPIEncoding_ExtraParameters() throws {
-        let extraParams: Parameters = ["links": ["self": "http://example.com/articles"]]
+        let extraParams: Japx.Parameters = ["links": ["self": "http://example.com/articles"]]
         let correctlyParsed = AdditionalFunctions.does(jsonFromFileNamed: "ExtraParams-Json", containsEverythingFrom: "ExtraParams-JsonApi") {
             return try! JapxKit.Encoder.encode(data: $0, additionalParams: extraParams)
         }

@@ -68,7 +68,7 @@ public class JAPXDecoder: NSObject {
     /// - parameter options:           The options specifying how `JAPXDecoder` should decode JSON:API into JSON.
     ///
     /// - returns: JSON object.
-    public static func jsonObject(withJSONAPIObject object: Parameters, includeList: String?, options: _JAPXOBjCDecodingOptions) throws -> Parameters {
+    public static func jsonObject(withJSONAPIObject object: Japx.Parameters, includeList: String?, options: _JAPXOBjCDecodingOptions) throws -> Japx.Parameters {
         do {
             return try JapxKit.Decoder.jsonObject(withJSONAPIObject: object, includeList: includeList, options: options.options)
         } catch {
@@ -83,7 +83,7 @@ public class JAPXDecoder: NSObject {
     /// - parameter options:           The options specifying how `JAPXDecoder` should decode JSON:API into JSON.
     ///
     /// - returns: JSON object as Data.
-    public static func data(withJSONAPIObject object: Parameters, includeList: String?, options: _JAPXOBjCDecodingOptions) throws -> Data {
+    public static func data(withJSONAPIObject object: Japx.Parameters, includeList: String?, options: _JAPXOBjCDecodingOptions) throws -> Data {
         do {
             return try JapxKit.Decoder.data(withJSONAPIObject: object, includeList: includeList, options: options.options)
         } catch {
@@ -98,7 +98,7 @@ public class JAPXDecoder: NSObject {
     /// - parameter options:           The options specifying how `JAPXDecoder` should decode JSON:API into JSON.
     ///
     /// - returns: JSON object.
-    public static func jsonObject(withData data: Data, includeList: String?, options: _JAPXOBjCDecodingOptions) throws -> Parameters {
+    public static func jsonObject(withData data: Data, includeList: String?, options: _JAPXOBjCDecodingOptions) throws -> Japx.Parameters {
         do {
             return try JapxKit.Decoder.jsonObject(with: data, includeList: includeList, options: options.options)
         } catch {
@@ -144,7 +144,7 @@ public class JAPXEncoder: NSObject {
     /// - parameter options:           The options specifying how `JAPXEncoder` should encode JSON into JSON:API.
     ///
     /// - returns: JSON:API object.
-    public static func encode(data: Data, additionalParams: Parameters?, options: _JAPXOBjCEncodingOptions) throws -> Parameters {
+    public static func encode(data: Data, additionalParams: Japx.Parameters?, options: _JAPXOBjCEncodingOptions) throws -> Japx.Parameters {
         do {
             return try JapxKit.Encoder.encode(data: data, additionalParams: additionalParams, options: options.options)
         } catch {
@@ -159,7 +159,7 @@ public class JAPXEncoder: NSObject {
     /// - parameter options:           The options specifying how `JAPXEncoder` should encode JSON into JSON:API.
     ///
     /// - returns: JSON:API object.
-    public static func encode(jsonParameter: Parameters, additionalParams: Parameters?, options: _JAPXOBjCEncodingOptions) throws -> Parameters {
+    public static func encode(jsonParameter: Japx.Parameters, additionalParams: Japx.Parameters?, options: _JAPXOBjCEncodingOptions) throws -> Japx.Parameters {
         do {
             return try JapxKit.Encoder.encode(json: jsonParameter, additionalParams: additionalParams, options: options.options)
         } catch {
@@ -174,7 +174,7 @@ public class JAPXEncoder: NSObject {
     /// - parameter options:           The options specifying how `JAPXEncoder` should encode JSON into JSON:API.
     ///
     /// - returns: JSON:API object.
-    public static func encode(jsonParameters: [Parameters], additionalParams: Parameters?, options: _JAPXOBjCEncodingOptions) throws -> Parameters {
+    public static func encode(jsonParameters: [Japx.Parameters], additionalParams: Japx.Parameters?, options: _JAPXOBjCEncodingOptions) throws -> Japx.Parameters {
         do {
             return try JapxKit.Encoder.encode(json: jsonParameters, additionalParams: additionalParams, options: options.options)
         } catch {

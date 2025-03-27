@@ -11,7 +11,7 @@ import Japx
 
 struct PrettyPrint {
     
-    static func prettyPrintJson(data: Parameters) -> String {
+    static func prettyPrintJson(data: Japx.Parameters) -> String {
         let dataData = try! JSONSerialization.data(withJSONObject: data, options: .prettyPrinted)
         
         return String(data: dataData, encoding: .utf8)!
